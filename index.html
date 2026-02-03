@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>今日のおにぎりアプリ</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin-top: 10px; padding: 5px 10px; }
+    #result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🍙 今日のおにぎりの具とおかず 🍱</h1>
+
+  <label>おにぎりの具を選択：</label>
+  <select id="riceFilling">
+    <option value="">-- 選んでね --</option>
+    <option value="鮭">鮭</option>
+    <option value="梅干し">梅干し</option>
+    <option value="昆布">昆布</option>
+    <option value="ツナマヨ">ツナマヨ</option>
+    <option value="明太子">明太子</option>
+    <option value="たらこ">たらこ</option>
+    <option value="おかか">おかか</option>
+  </select>
+
+  <br>
+  <button onclick="suggestSideDish()">提案する</button>
+
+  <div id="result"></div>
+
+  <script>
+    const sideDishes = {
+      鮭: ["ほうれん草のおひたし", "味噌汁", "卵焼き"],
+      梅干し: ["きんぴらごぼう", "冷ややっこ", "味噌汁"],
+      昆布: ["だし巻き卵", "おひたし", "味噌汁"],
+      ツナマヨ: ["キャベツのサラダ", "きゅうりの浅漬け", "コーンスープ"],
+      明太子: ["ほうれん草の胡麻和え", "味噌汁", "卵焼き"],
+      たらこ: ["きんぴらごぼう", "ほうれん草のおひたし", "味噌汁"],
+      おかか: ["冷ややっこ", "だし巻き卵", "味噌汁"]
+    };
+
+    function suggestSideDish() {
+      const filling = document.getElementById("riceFilling").value;
+      if (!filling) {
+        alert("おにぎりの具を選んでください！");
+        return;
+      }
+      const dishes = sideDishes[filling];
+      const randomDish = dishes[Math.floor(Math.random() * dishes.length)];
+      document.getElementById("result").textContent = 
+        `今日のおにぎり：${filling} 🍙\nおすすめおかず：${randomDish} 🍱`;
+    }
+  </script>
+</body>
+</html>
